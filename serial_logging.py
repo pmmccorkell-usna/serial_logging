@@ -32,20 +32,17 @@ file_handler.setFormatter(format)
 log.addHandler(file_handler)
 
 def serial_logging():
-
-	in_buffer=ser.readline()
-
-	if (in_buffer[0:3].decode()=='log'):
-		log.info(in_buffer[0:(length-2)].decode())
-
+    in_buffer=ser.readline()
+    length=len(in_buffer)
+    log.info(in_buffer[0:(length-2)].decode())
+    print(in_buffer)
 
 def main():
-	while(1):
-		while (ser.inWaiting==0):
-			time.sleep(0.005)
-		serial_logging()
+    while(1):
+        while (ser.inWaiting==0):
+            time.sleep(0.005)
+        serial_logging()
 
 
 if __name__ == "__main__":
-	main()
-
+    main()
